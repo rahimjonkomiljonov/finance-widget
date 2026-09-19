@@ -60,7 +60,7 @@ export function createWindowForMode(mode: WindowMode): BrowserWindow {
     ...defaultSize,
     ...savedBounds,
     frame: mode === 'full',
-    alwaysOnTop: mode === 'widget',
+    alwaysOnTop: mode === 'widget' && settings.widgetOnTop === true,
     skipTaskbar: mode === 'widget',
     resizable: true,
     show: false,
@@ -103,6 +103,14 @@ export function createWindowForMode(mode: WindowMode): BrowserWindow {
   }
 
   return win
+}
+
+/** Pin or unpin the widget above other windows; applies to the open widget immediately. */
+export function setWidgetOnTop(enabled: boolean): void {
+  updateSettings({ widgetOnTop: enabled })
+  if (currentMode === 'widget' && currentWindow && !currentWindow.isDestroyed()) {
+    currentWindow.setAlwaysOnTop(enabled)
+  }
 }
 
 export function switchWindowMode(mode: WindowMode): BrowserWindow {

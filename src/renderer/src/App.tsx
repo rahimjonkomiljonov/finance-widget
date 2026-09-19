@@ -22,6 +22,7 @@ function App(): JSX.Element {
   const [currency, setCurrencyState] = useState<Currency>('USD')
   const [refreshIntervalMs, setRefreshIntervalMs] = useState(5 * 60_000)
   const [startAtLogin, setStartAtLoginState] = useState(true)
+  const [widgetOnTop, setWidgetOnTopState] = useState(false)
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
@@ -37,6 +38,7 @@ function App(): JSX.Element {
       setCurrencyState(state.settings.displayCurrency)
       setRefreshIntervalMs(state.settings.refreshIntervalMs)
       setStartAtLoginState(state.settings.startAtLogin ?? true)
+      setWidgetOnTopState(state.settings.widgetOnTop === true)
       setLoading(false)
     })
 
@@ -65,6 +67,17 @@ function App(): JSX.Element {
   async function handleSetStartAtLogin(enabled: boolean): Promise<void> {
     setStartAtLoginState(enabled)
     await window.api.setStartAtLogin(enabled)
+  }
+
+  async function handleSetWidgetOnTop(enabled: boolean): Promise<void> {
+    setWidgetOnTopState(enabled)
+    await window.api.setWidgetOnTop(enabled)
+  }
+
+  // The tray menu can flip this too, so re-read it whenever the panel opens.
+  function openSettings(): void {
+    window.api.getState().then((state) => setWidgetOnTopState(state.settings.widgetOnTop === true))
+    setSettingsOpen(true)
   }
 
   async function handleRefresh(): Promise<void> {
@@ -115,7 +128,7 @@ function App(): JSX.Element {
           <button onClick={() => setModalState({ mode: 'add' })} aria-label="Add stock" title="Add stock">
             {windowMode === 'widget' ? '+' : '+ Add Stock'}
           </button>
-          <button onClick={() => setSettingsOpen(true)} aria-label="Settings" title="Settings">
+          <button onClick={openSettings} aria-label="Settings" title="Settings">
             ⚙
           </button>
           <WindowModeToggle mode={windowMode} onChange={(m) => window.api.setWindowMode(m)} />
@@ -175,8 +188,11 @@ function App(): JSX.Element {
           holdings={derived}
           refreshIntervalMs={refreshIntervalMs}
           startAtLogin={startAtLogin}
+          widgetOnTop={widgetOnTop}
+          showWidgetOnTop={windowMode === 'widget'}
           onSetRefreshInterval={handleSetRefreshInterval}
           onSetStartAtLogin={handleSetStartAtLogin}
+          onSetWidgetOnTop={handleSetWidgetOnTop}
           onClose={() => setSettingsOpen(false)}
         />
       )}

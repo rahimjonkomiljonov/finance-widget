@@ -1,6 +1,6 @@
 {
   "name": "finance-widget",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Desktop widget for tracking a stock portfolio",
   "main": "./out/main/index.js",
   "author": "Rahimjon",

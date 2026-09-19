@@ -10,7 +10,8 @@ import {
 } from './store'
 import type { RefreshScheduler } from './services/refreshScheduler'
 import { exportHoldingsToCsv, type CsvExportResult } from './services/csvExport'
-import { switchWindowMode } from './windowManager'
+import { setWidgetOnTop, switchWindowMode } from './windowManager'
+import { refreshTrayMenu } from './tray'
 import { applyStartAtLogin } from './services/startAtLogin'
 import type { AppState, Currency, Holding, HoldingInput, WindowMode } from '../shared/types'
 
@@ -79,6 +80,12 @@ export function registerIpcHandlers(scheduler: RefreshScheduler): void {
 
   ipcMain.handle('window:setMode', (_e, mode: WindowMode) => {
     switchWindowMode(mode)
+  })
+
+  ipcMain.handle('settings:setWidgetOnTop', (_e, enabled: boolean) => {
+    setWidgetOnTop(enabled)
+    refreshTrayMenu()
+    return getSettings()
   })
 
   ipcMain.handle('settings:setStartAtLogin', (_e, enabled: boolean) => {

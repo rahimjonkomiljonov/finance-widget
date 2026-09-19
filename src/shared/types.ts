@@ -34,6 +34,8 @@ export interface Settings {
   displayCurrency: Currency
   windowMode: WindowMode
   startAtLogin?: boolean
+  /** Keep the widget above other windows. Off by default: the widget is a normal window. */
+  widgetOnTop?: boolean
   widgetBounds?: WindowBounds
   fullBounds?: WindowBounds
 }

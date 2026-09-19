@@ -32,7 +32,9 @@ const api = {
   ): Promise<{ canceled: boolean; filePath?: string }> => ipcRenderer.invoke('export:csv', rows),
   setWindowMode: (mode: WindowMode): Promise<void> => ipcRenderer.invoke('window:setMode', mode),
   setStartAtLogin: (enabled: boolean): Promise<Settings> =>
-    ipcRenderer.invoke('settings:setStartAtLogin', enabled)
+    ipcRenderer.invoke('settings:setStartAtLogin', enabled),
+  setWidgetOnTop: (enabled: boolean): Promise<Settings> =>
+    ipcRenderer.invoke('settings:setWidgetOnTop', enabled)
 }
 
 if (process.contextIsolated) {

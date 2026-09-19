@@ -6,8 +6,11 @@ interface Props {
   holdings: DerivedHolding[]
   refreshIntervalMs: number
   startAtLogin: boolean
+  widgetOnTop: boolean
+  showWidgetOnTop: boolean
   onSetRefreshInterval: (ms: number) => void
   onSetStartAtLogin: (enabled: boolean) => void
+  onSetWidgetOnTop: (enabled: boolean) => void
   onClose: () => void
 }
 
@@ -15,8 +18,11 @@ function SettingsPanel({
   holdings,
   refreshIntervalMs,
   startAtLogin,
+  widgetOnTop,
+  showWidgetOnTop,
   onSetRefreshInterval,
   onSetStartAtLogin,
+  onSetWidgetOnTop,
   onClose
 }: Props): JSX.Element {
   const [minutes, setMinutes] = useState(String(Math.round(refreshIntervalMs / 60_000)))
@@ -70,6 +76,17 @@ function SettingsPanel({
           />
           Start automatically when Windows starts
         </label>
+
+        {showWidgetOnTop && (
+          <label className="checkbox-row">
+            <input
+              type="checkbox"
+              checked={widgetOnTop}
+              onChange={(e) => onSetWidgetOnTop(e.target.checked)}
+            />
+            Keep the widget on top of other windows
+          </label>
+        )}
 
         <hr className="modal-divider" />
 
