@@ -3,7 +3,8 @@
   "version": "0.1.4",
   "description": "Desktop widget for tracking a stock portfolio",
   "main": "./out/main/index.js",
-  "author": "rahimjonkomiljonov06@gmail.com",
+  "author": "Rahimjon",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",

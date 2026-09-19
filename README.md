@@ -30,3 +30,7 @@ Requires JDK 21 and the Android SDK (platform 37). The release build is signed w
 ## Data
 
 Holdings are stored locally on each device. There is no account and no server. Only ticker symbols are sent to Yahoo Finance to fetch prices.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
