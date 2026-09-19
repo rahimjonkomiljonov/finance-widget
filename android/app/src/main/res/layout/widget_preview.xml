@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Static sample shown in the widget picker (API 31+). Real data comes from widget_portfolio. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_background"
+    android:orientation="vertical"
+    android:paddingStart="16dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/app_name"
+            android:textColor="@color/widget_text_primary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="8dp"
+            android:text="USD"
+            android:textColor="@color/widget_text_secondary"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="09:45"
+            android:textColor="@color/widget_text_secondary"
+            android:textSize="12sp" />
+
+        <ImageButton
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@android:color/transparent"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_refresh" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/widget_divider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="44dp"
+        android:orientation="horizontal">
+
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:text="NVDA" android:textColor="@color/widget_text_primary" android:textSize="13sp" />
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:gravity="end" android:text="222.27" android:textColor="@color/trend_up_kr" android:textSize="14sp" android:textStyle="bold" />
+        <TextView android:layout_width="22dp" android:layout_height="wrap_content" android:gravity="center" android:text="▲" android:textColor="@color/trend_up_kr" android:textSize="9sp" />
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.1" android:gravity="end" android:text="2.93" android:textColor="@color/trend_up_kr" android:textSize="12sp" />
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="end" android:text="1.34%" android:textColor="@color/trend_up_kr" android:textSize="12sp" />
+    </LinearLayout>
+
+    <FrameLayout android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/widget_divider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="44dp"
+        android:orientation="horizontal">
+
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:text="005930.KS" android:textColor="@color/widget_text_primary" android:textSize="13sp" />
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:gravity="end" android:text="188.40" android:textColor="@color/trend_down_kr" android:textSize="14sp" android:textStyle="bold" />
+        <TextView android:layout_width="22dp" android:layout_height="wrap_content" android:gravity="center" android:text="▼" android:textColor="@color/trend_down_kr" android:textSize="9sp" />
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.1" android:gravity="end" android:text="3.40" android:textColor="@color/trend_down_kr" android:textSize="12sp" />
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="end" android:text="1.77%" android:textColor="@color/trend_down_kr" android:textSize="12sp" />
+    </LinearLayout>
+
+    <FrameLayout android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/widget_divider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="44dp"
+        android:orientation="horizontal">
+
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:text="ONTO" android:textColor="@color/widget_text_primary" android:textSize="13sp" />
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:gravity="end" android:text="258.05" android:textColor="@color/trend_up_kr" android:textSize="14sp" android:textStyle="bold" />
+        <TextView android:layout_width="22dp" android:layout_height="wrap_content" android:gravity="center" android:text="▲" android:textColor="@color/trend_up_kr" android:textSize="9sp" />
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.1" android:gravity="end" android:text="4.79" android:textColor="@color/trend_up_kr" android:textSize="12sp" />
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="end" android:text="1.89%" android:textColor="@color/trend_up_kr" android:textSize="12sp" />
+    </LinearLayout>
+</LinearLayout>

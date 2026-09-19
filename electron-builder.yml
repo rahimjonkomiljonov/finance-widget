@@ -1,0 +1,13 @@
+appId: com.rahimjon.financewidget
+productName: Finance Widget
+directories:
+  output: release
+files:
+  - out/**/*
+win:
+  target:
+    - nsis
+    - portable
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true

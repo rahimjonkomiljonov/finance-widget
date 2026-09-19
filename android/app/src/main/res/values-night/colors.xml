@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="widget_bg">#1E1E1E</color>
+    <color name="widget_text_primary">#EDEDED</color>
+    <color name="widget_text_secondary">#9A9AA2</color>
+    <color name="widget_divider">#3A3A3F</color>
+
+    <color name="trend_up_kr">#FF4D6A</color>
+    <color name="trend_down_kr">#4D94FF</color>
+    <color name="trend_up_we">#34C759</color>
+    <color name="trend_down_we">#FF5A4F</color>
+</resources>
