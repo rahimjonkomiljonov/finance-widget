@@ -77,6 +77,21 @@ export function deriveHoldings(
   }))
 }
 
+/**
+ * Market value per ticker in USD, summing every lot of the same stock. The list shows one
+ * row per lot (buy prices differ), but allocation is about what you own, so the chart
+ * combines lots. Tickers without a price are left out.
+ */
+export function valueByTicker(derived: DerivedHolding[]): { ticker: string; valueUsd: number }[] {
+  const totals = new Map<string, number>()
+  for (const h of derived) {
+    if (h.marketValueUsd === null) continue
+    const ticker = h.ticker.toUpperCase()
+    totals.set(ticker, (totals.get(ticker) ?? 0) + h.marketValueUsd)
+  }
+  return [...totals].map(([ticker, valueUsd]) => ({ ticker, valueUsd }))
+}
+
 export function computePortfolioTotals(derived: DerivedHolding[]): PortfolioTotals {
   const totalMarketValueUsd = derived.reduce((sum, h) => sum + (h.marketValueUsd ?? 0), 0)
   const totalCostBasisUsd = derived.reduce((sum, h) => sum + (h.costBasisUsd ?? 0), 0)

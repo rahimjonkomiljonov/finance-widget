@@ -1,6 +1,6 @@
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip, TooltipProps } from 'recharts'
 import type { Currency } from '../../../shared/types'
-import type { DerivedHolding } from '../lib/derive'
+import { valueByTicker, type DerivedHolding } from '../lib/derive'
 import { formatCurrency } from '../lib/formatCurrency'
 
 // Dark-mode categorical palette (validated for CVD-safe adjacency, fixed order — never cycled).
@@ -32,15 +32,16 @@ interface Props {
 }
 
 function buildSlices(holdings: DerivedHolding[]): SliceDatum[] {
-  const sorted = holdings
-    .filter((h): h is DerivedHolding & { marketValueUsd: number } => (h.marketValueUsd ?? 0) > 0)
-    .sort((a, b) => b.marketValueUsd - a.marketValueUsd)
+  // One slice per stock: several lots of the same ticker are combined.
+  const sorted = valueByTicker(holdings)
+    .filter((t) => t.valueUsd > 0)
+    .sort((a, b) => b.valueUsd - a.valueUsd)
 
   const top = sorted.slice(0, MAX_SLICES)
   const rest = sorted.slice(MAX_SLICES)
-  const otherValue = rest.reduce((sum, h) => sum + h.marketValueUsd, 0)
+  const otherValue = rest.reduce((sum, t) => sum + t.valueUsd, 0)
 
-  const slices: SliceDatum[] = top.map((h) => ({ name: h.ticker, value: h.marketValueUsd }))
+  const slices: SliceDatum[] = top.map((t) => ({ name: t.ticker, value: t.valueUsd }))
   if (otherValue > 0) slices.push({ name: 'Other', value: otherValue })
   return slices
 }
